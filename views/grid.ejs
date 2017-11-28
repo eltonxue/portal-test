@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://bgrins.github.io/spectrum/spectrum.css">
+    <script type="text/javascript" src="http://bgrins.github.com/spectrum/spectrum.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <input type='text' id="color-picker"/>
+    <button id="clear">Clear</button>
+    <div id="grid-container" data-id="<%= grid.key %>">
+      <% for (let r = 0; r < grid.grid.length; ++r) { %>
+        <div class="row">
+          <% for (let c = 0; c < grid.grid[r].length; ++c) { %>
+            <div class="grid-cell" data-row="<%= r %>" data-col="<%= c %>" style="background-color: <%= grid.grid[r][c] %>"></div>
+          <% } %>
+        <% } %>
+      </div>
+    </body>
+    <footer>
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+      var socket = io({
+  query: {
+    id: '<%= grid.key %>'
+  }
+});
+</script>
+
+      <script type="text/javascript" src="/javascripts/grid.js"></script>
+
+    </footer>
+
+  </html>
